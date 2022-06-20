@@ -1,4 +1,8 @@
-﻿using Valuutanvaihto.Entities;
+﻿/**
+ * @Author Vytis Mikašauskas
+ **/
+
+using Valuutanvaihto.Entities;
 using Valuutanvaihto.MVVM;
 using Valuutanvaihto.Repositories;
 using Valuutanvaihto.UnitOfWorks;
@@ -7,8 +11,6 @@ namespace Valuutanvaihto
 {
     internal class Program
     {
-        
-
         static void Main(string[] args)
         {
             var currencyRepo = new CurrencyRepo();
