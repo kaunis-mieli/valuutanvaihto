@@ -16,9 +16,19 @@ namespace Valuutanvaihto
 
             var dataInputUnitOfWork = new DataInputUnitOfWork(currencyRepo, rateRepo);
 
-            dataInputUnitOfWork.ProcessData(new List<CurrencyPairMVVM>() { new CurrencyPairMVVM { BaseCurrencyCode = "EUR", QuoteCurrencyCode =  } }, 100);
+            dataInputUnitOfWork.ProcessData(ReadData(), 100);
+        }
 
-            Console.WriteLine("Hello, World!");
+        static List<CurrencyPairMVVM> ReadData()
+        {
+            var toReturn = File.ReadAllLines("/Data/data.txt");
+
+            return toReturn.Select(line =>
+                    {
+                        var parts = line.Split('\t');
+                        return new CurrencyPairMVVM(parts[0], parts[1], Convert.ToDecimal(parts[2]));
+                    })
+                .ToList();
         }
     }
 }
